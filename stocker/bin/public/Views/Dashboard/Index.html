@@ -1,0 +1,63 @@
+﻿<script id="View-Dashboard-Index" type="text/html" data-layout="">
+<!-- ko  with: new DashboardViewModel() -->
+    <div style="padding: 5px; padding-right: 10px;" data-bind="AnimateSwoopPanels: App.Navigation.ViewReady">
+
+        <div class="row row-height-2">
+            <div class="col-md-12 no-padding">
+                <div class="panel" data-bind="template:{
+        name:'Panel',
+        data:{
+            Title:ko.observable('World Markets'),
+            Foreground:ko.observable('black'),
+            Background:ko.observable('white'),
+            Icon: ko.observable('earth'),
+            Loading:ko.observable(true),
+            Width:12,
+            Height:2,
+            Content:'WorldMapWidget'}
+        }">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-height-1">
+
+            <div class="col-md-6 no-padding">
+                <div class="panel" data-bind="template:{
+        name:'Panel',
+        data:{
+            Title:ko.observable('World Markets'),
+            Foreground:ko.observable('black'),
+            Background:ko.observable('white'),
+            Icon:ko.observable('compass'),
+            Loading:ko.observable(true),
+            Width:6,
+            Height:1,
+            Content:'WorldMarkesGridWidget'}
+        }">
+
+                </div>
+            </div>
+
+            <div class="col-md-6 no-padding">
+                <div class="panel" data-bind="template:{
+        name:'Panel',
+        data:{
+            Title:ko.observable('World Markets'),
+            Foreground:ko.observable('black'),
+            Background:ko.observable('white'),
+            Icon:ko.observable('compass'),
+            Loading:ko.observable(true),
+            Width:6,
+            Height:1,
+            Content:'WorldMarketsChartWidget'}
+        }">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+<!-- /ko -->
+</script>

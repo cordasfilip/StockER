@@ -1,0 +1,263 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0000000050bdd529, pid=9288, tid=12852
+#
+# JRE version: 7.0_01-b08
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (21.1-b02 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0xed529]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000000acc3800):  JavaThread "nREPL-worker-5" daemon [_thread_in_vm, id=12852, stack(0x0000000009f90000,0x000000000a090000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000000000000
+
+Registers:
+RAX=0x0000000000000000, RBX=0x000000000acc3800, RCX=0x0000000000000380, RDX=0x0000000000000000
+RSP=0x000000000a08e330, RBP=0x000000000a2a77e8, RSI=0x0000000000000000, RDI=0x0000000000000000
+R8 =0x0000000000000000, R9 =0x000000077d12be58, R10=0x00000000029c9b52, R11=0x0000000050caa070
+R12=0x000000000a08e4b0, R13=0x000000077d1233f0, R14=0x000000000a08e4b0, R15=0x000000000acc3800
+RIP=0x0000000050bdd529, EFLAGS=0x0000000000010246
+
+Top of Stack: (sp=0x000000000a08e330)
+0x000000000a08e330:   0000000000000000 00000000029b61f5
+0x000000000a08e340:   0000000000000000 0000000069341599
+0x000000000a08e350:   000000000acc3800 0000000000000000
+0x000000000a08e360:   000000000a08e4b0 000000000a08e3b0
+0x000000000a08e370:   000000077d1233f0 000000000a08e4b0
+0x000000000a08e380:   0000000000000000 0000000069342090
+0x000000000a08e390:   000000000acc39d0 000000000a2a77e8
+0x000000000a08e3a0:   00000000ef654f45 00000007d6d19aa8
+0x000000000a08e3b0:   00000007d6d21940 000000000a08e3b8
+0x000000000a08e3c0:   000000077b30b9e4 000000000a08e440
+0x000000000a08e3d0:   000000077d1233f8 00000000ef654f45
+0x000000000a08e3e0:   00000000029b6254 000000000a08e488
+0x000000000a08e3f0:   0000000000000000 00000000029c9b7f
+0x000000000a08e400:   00000000029b62b3 00000007d6d21928
+0x000000000a08e410:   0000000000000000 00000007d6d21940
+0x000000000a08e420:   00000007d6d21940 0000000000000002 
+
+Instructions: (pc=0x0000000050bdd529)
+0x0000000050bdd509:   00 48 83 7b 08 00 48 89 5c 24 20 48 c7 44 24 28
+0x0000000050bdd519:   00 00 00 00 74 0a 48 8d 4c 24 20 e8 97 53 10 00
+0x0000000050bdd529:   48 8b 36 48 8b ce e8 4c b4 f4 ff 4c 63 e0 49 8d
+0x0000000050bdd539:   4c 24 01 e8 8f e6 0b 00 48 8b e8 48 85 c0 75 20 
+
+
+Register to memory mapping:
+
+RAX=0x0000000000000000 is an unknown value
+RBX=0x000000000acc3800 is a thread
+RCX=0x0000000000000380 is an unknown value
+RDX=0x0000000000000000 is an unknown value
+RSP=0x000000000a08e330 is pointing into the stack for thread: 0x000000000acc3800
+RBP=0x000000000a2a77e8 is an unknown value
+RSI=0x0000000000000000 is an unknown value
+RDI=0x0000000000000000 is an unknown value
+R8 =0x0000000000000000 is an unknown value
+R9 =0x000000077d12be58 is an oop
+{instance class} 
+ - klass: {other class}
+R10=0x00000000029c9b52 is an Interpreter codelet
+method entry point (kind = native_synchronized)  [0x00000000029c9440, 0x00000000029ca520]  4320 bytes
+R11=0x0000000050caa070 is an unknown value
+R12=0x000000000a08e4b0 is pointing into the stack for thread: 0x000000000acc3800
+R13=0x000000077d1233f0 is an oop
+{constMethod} 
+ - klass: {other class}
+ - method:       0x000000077d1233f8 {method} 'prepare' '(Ljava/lang/String;)J' in 'org/sqlite/NativeDB'
+ - exceptions:   0x000000077b201d40
+R14=0x000000000a08e4b0 is pointing into the stack for thread: 0x000000000acc3800
+R15=0x000000000acc3800 is a thread
+
+
+Stack: [0x0000000009f90000,0x000000000a090000],  sp=0x000000000a08e330,  free space=1016k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0xed529]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  org.sqlite.NativeDB.prepare(Ljava/lang/String;)J+0
+j  org.sqlite.DB.prepare(Lorg/sqlite/Stmt;)V+21
+j  org.sqlite.Stmt.executeBatch()[I+62
+j  clojure.java.jdbc$do_commands$fn__3694.invoke()Ljava/lang/Object;+16
+j  clojure.java.jdbc.internal$transaction_STAR_.invoke(Ljava/lang/Object;)Ljava/lang/Object;+191
+j  clojure.java.jdbc$do_commands.doInvoke(Ljava/lang/Object;)Ljava/lang/Object;+345
+j  clojure.lang.RestFn.invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+74
+j  db.portfolio_db$save_features$fn__3909.invoke()Ljava/lang/Object;+109
+j  clojure.java.jdbc.internal$with_connection_STAR_.invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+106
+j  db.portfolio_db$save_features.invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+87
+j  controller.system_operations$calculate_nmf.invoke(Ljava/lang/Object;)Ljava/lang/Object;+601
+j  controller.system_operations$eval7303.invoke()Ljava/lang/Object;+12
+j  clojure.lang.Compiler.eval(Ljava/lang/Object;Z)Ljava/lang/Object;+330
+j  clojure.lang.Compiler.eval(Ljava/lang/Object;)Ljava/lang/Object;+2
+j  clojure.core$eval.invoke(Ljava/lang/Object;)Ljava/lang/Object;+3
+j  clojure.main$repl$read_eval_print__6588$fn__6591.invoke()Ljava/lang/Object;+11
+j  clojure.main$repl$read_eval_print__6588.invoke()Ljava/lang/Object;+196
+j  clojure.main$repl$fn__6597.invoke()Ljava/lang/Object;+7
+j  clojure.main$repl.doInvoke(Ljava/lang/Object;)Ljava/lang/Object;+568
+j  clojure.lang.RestFn.invoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+225
+j  clojure.tools.nrepl.middleware.interruptible_eval$evaluate$fn__597.invoke()Ljava/lang/Object;+195
+j  clojure.lang.AFn.applyToHelper(Lclojure/lang/IFn;Lclojure/lang/ISeq;)Ljava/lang/Object;+107
+j  clojure.lang.AFn.applyTo(Lclojure/lang/ISeq;)Ljava/lang/Object;+8
+j  clojure.core$apply.invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+26
+j  clojure.core$with_bindings_STAR_.doInvoke(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+33
+j  clojure.lang.RestFn.invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+109
+j  clojure.tools.nrepl.middleware.interruptible_eval$evaluate.invoke(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;+512
+j  clojure.tools.nrepl.middleware.interruptible_eval$interruptible_eval$fn__638$fn__641.invoke()Ljava/lang/Object;+114
+j  clojure.core$comp$fn__4154.invoke()Ljava/lang/Object;+14
+j  clojure.tools.nrepl.middleware.interruptible_eval$run_next$fn__631.invoke()Ljava/lang/Object;+7
+j  clojure.lang.AFn.run()V+1
+j  java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V+46
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+=>0x000000000acc3800 JavaThread "nREPL-worker-5" daemon [_thread_in_vm, id=12852, stack(0x0000000009f90000,0x000000000a090000)]
+  0x000000000acc2800 JavaThread "clojure-agent-send-off-pool-12" [_thread_blocked, id=6032, stack(0x0000000009e90000,0x0000000009f90000)]
+  0x000000000acc3000 JavaThread "qtp1650659924-31" [_thread_blocked, id=5396, stack(0x000000000dba0000,0x000000000dca0000)]
+  0x000000000acbe800 JavaThread "qtp1650659924-30" [_thread_blocked, id=8236, stack(0x000000000daa0000,0x000000000dba0000)]
+  0x000000000acc1000 JavaThread "qtp1650659924-29" [_thread_blocked, id=12120, stack(0x000000000c900000,0x000000000ca00000)]
+  0x000000000acc1800 JavaThread "qtp1650659924-28" [_thread_blocked, id=11308, stack(0x000000000b7c0000,0x000000000b8c0000)]
+  0x000000000acbd000 JavaThread "qtp1650659924-27" [_thread_blocked, id=6912, stack(0x000000000b6c0000,0x000000000b7c0000)]
+  0x000000000acbe000 JavaThread "qtp1650659924-26" [_thread_blocked, id=12000, stack(0x000000000b5c0000,0x000000000b6c0000)]
+  0x000000000acbf800 JavaThread "qtp1650659924-25 Selector0" [_thread_in_native, id=4896, stack(0x000000000a490000,0x000000000a590000)]
+  0x000000000acc0000 JavaThread "qtp1650659924-24 Acceptor0 SelectChannelConnector@0.0.0.0:3000" [_thread_in_native, id=9932, stack(0x000000000a390000,0x000000000a490000)]
+  0x000000000814c800 JavaThread "clojure-agent-send-off-pool-6" [_thread_blocked, id=12428, stack(0x0000000009ca0000,0x0000000009da0000)]
+  0x0000000007fe2000 JavaThread "clojure-agent-send-off-pool-5" [_thread_in_native, id=11528, stack(0x00000000098c0000,0x00000000099c0000)]
+  0x0000000007941800 JavaThread "clojure-agent-send-off-pool-4" [_thread_in_native, id=7704, stack(0x00000000097c0000,0x00000000098c0000)]
+  0x0000000007d06000 JavaThread "clojure-agent-send-off-pool-3" [_thread_blocked, id=4672, stack(0x00000000096c0000,0x00000000097c0000)]
+  0x0000000007a79800 JavaThread "clojure-agent-send-off-pool-2" [_thread_blocked, id=10392, stack(0x00000000095c0000,0x00000000096c0000)]
+  0x0000000007b57000 JavaThread "clojure-agent-send-off-pool-1" [_thread_in_native, id=9696, stack(0x00000000094c0000,0x00000000095c0000)]
+  0x00000000081e5000 JavaThread "clojure-agent-send-off-pool-0" [_thread_in_native, id=8420, stack(0x00000000083e0000,0x00000000084e0000)]
+  0x0000000007b22800 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=7604, stack(0x00000000082e0000,0x00000000083e0000)]
+  0x0000000006561000 JavaThread "Service Thread" daemon [_thread_blocked, id=10484, stack(0x00000000074e0000,0x00000000075e0000)]
+  0x0000000006555800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=8828, stack(0x00000000073e0000,0x00000000074e0000)]
+  0x000000000654f800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=816, stack(0x00000000072e0000,0x00000000073e0000)]
+  0x0000000006543000 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=6692, stack(0x00000000071e0000,0x00000000072e0000)]
+  0x000000000653d800 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_blocked, id=10660, stack(0x00000000070e0000,0x00000000071e0000)]
+  0x000000000652e800 JavaThread "Attach Listener" daemon [_thread_blocked, id=7072, stack(0x0000000006fe0000,0x00000000070e0000)]
+  0x000000000652b000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2088, stack(0x0000000006ee0000,0x0000000006fe0000)]
+  0x00000000064c4800 JavaThread "Finalizer" daemon [_thread_blocked, id=4816, stack(0x0000000006de0000,0x0000000006ee0000)]
+  0x00000000064bb800 JavaThread "Reference Handler" daemon [_thread_blocked, id=4848, stack(0x0000000006ce0000,0x0000000006de0000)]
+  0x00000000028b3000 JavaThread "main" [_thread_blocked, id=13308, stack(0x00000000026e0000,0x00000000027e0000)]
+
+Other Threads:
+  0x00000000064b4000 VMThread [stack: 0x0000000006be0000,0x0000000006ce0000] [id=5108]
+  0x00000000065a4800 WatcherThread [stack: 0x00000000075e0000,0x00000000076e0000] [id=9448]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 674816K, used 27981K [0x00000007d56b0000, 0x0000000800000000, 0x0000000800000000)
+  eden space 661376K, 3% used [0x00000007d56b0000,0x00000007d6dabec8,0x00000007fdc90000)
+  from space 13440K, 33% used [0x00000007fdc90000,0x00000007fe0e77c8,0x00000007fe9b0000)
+  to   space 13312K, 0% used [0x00000007ff300000,0x00000007ff300000,0x0000000800000000)
+ PSOldGen        total 87232K, used 42036K [0x0000000780400000, 0x0000000785930000, 0x00000007d56b0000)
+  object space 87232K, 48% used [0x0000000780400000,0x0000000782d0d0b8,0x0000000785930000)
+ PSPermGen       total 34304K, used 34125K [0x000000077b200000, 0x000000077d380000, 0x0000000780400000)
+  object space 34304K, 99% used [0x000000077b200000,0x000000077d353458,0x000000077d380000)
+
+Code Cache  [0x00000000029b0000, 0x0000000002d20000, 0x00000000059b0000)
+ total_blobs=1295 nmethods=904 adapters=349 free_code_cache=45758Kb largest_free_block=46736640
+
+Dynamic libraries:
+0x00007ff7f4100000 - 0x00007ff7f4133000 	C:\Program Files\Java\jdk1.7.0_01\bin\java.exe
+0x00007fff58ba0000 - 0x00007fff58d4a000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007fff55b00000 - 0x00007fff55c3a000 	C:\WINDOWS\system32\KERNEL32.DLL
+0x00007fff554b0000 - 0x00007fff555bf000 	C:\WINDOWS\system32\KERNELBASE.dll
+0x00007fff53d80000 - 0x00007fff53e08000 	C:\WINDOWS\system32\apphelp.dll
+0x00007fff52480000 - 0x00007fff524cf000 	C:\WINDOWS\AppPatch\AppPatch64\AcGenral.DLL
+0x00007fff55fa0000 - 0x00007fff56047000 	C:\WINDOWS\system32\msvcrt.dll
+0x00007fff54f90000 - 0x00007fff54fbb000 	C:\WINDOWS\SYSTEM32\SspiCli.dll
+0x00007fff56190000 - 0x00007fff561e1000 	C:\WINDOWS\system32\SHLWAPI.dll
+0x00007fff55660000 - 0x00007fff557d1000 	C:\WINDOWS\system32\USER32.dll
+0x00007fff55e20000 - 0x00007fff55f98000 	C:\WINDOWS\system32\ole32.dll
+0x00007fff561f0000 - 0x00007fff57610000 	C:\WINDOWS\system32\SHELL32.dll
+0x00007fff547c0000 - 0x00007fff547de000 	C:\WINDOWS\SYSTEM32\USERENV.dll
+0x00007fff577e0000 - 0x00007fff57885000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x00007fff48960000 - 0x00007fff4897b000 	C:\WINDOWS\SYSTEM32\MPR.dll
+0x00007fff57670000 - 0x00007fff577a7000 	C:\WINDOWS\system32\RPCRT4.dll
+0x00007fff57610000 - 0x00007fff57667000 	C:\WINDOWS\SYSTEM32\sechost.dll
+0x00007fff55c40000 - 0x00007fff55e16000 	C:\WINDOWS\SYSTEM32\combase.dll
+0x00007fff578a0000 - 0x00007fff579e4000 	C:\WINDOWS\system32\GDI32.dll
+0x00007fff55150000 - 0x00007fff55164000 	C:\WINDOWS\SYSTEM32\profapi.dll
+0x00007fff521c0000 - 0x00007fff5225f000 	C:\WINDOWS\SYSTEM32\SHCORE.dll
+0x00007fff55980000 - 0x00007fff559b4000 	C:\WINDOWS\system32\IMM32.DLL
+0x00007fff56050000 - 0x00007fff56189000 	C:\WINDOWS\system32\MSCTF.dll
+0x00007fff51d90000 - 0x00007fff51fea000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.17031_none_6242a4b3ecbb55a1\COMCTL32.dll
+0x00000000511c0000 - 0x0000000051291000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\msvcr100.dll
+0x0000000050af0000 - 0x00000000511bd000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\server\jvm.dll
+0x00007fff48be0000 - 0x00007fff48be9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007fff51050000 - 0x00007fff5106f000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007fff577d0000 - 0x00007fff577d7000 	C:\WINDOWS\system32\PSAPI.DLL
+0x00007fff57c40000 - 0x00007fff57c98000 	C:\WINDOWS\system32\WS2_32.dll
+0x00007fff51010000 - 0x00007fff5103a000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007fff57d40000 - 0x00007fff57d49000 	C:\WINDOWS\system32\NSI.dll
+0x00007fff555c0000 - 0x00007fff5560a000 	C:\WINDOWS\SYSTEM32\cfgmgr32.dll
+0x00007fff53fe0000 - 0x00007fff54006000 	C:\WINDOWS\SYSTEM32\DEVOBJ.dll
+0x0000000051cf0000 - 0x0000000051cff000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\verify.dll
+0x0000000050ac0000 - 0x0000000050ae8000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\java.dll
+0x0000000050a80000 - 0x0000000050ab5000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\jdwp.dll
+0x0000000051ce0000 - 0x0000000051ce8000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\npt.dll
+0x0000000050a60000 - 0x0000000050a75000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\zip.dll
+0x0000000050a50000 - 0x0000000050a59000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\dt_socket.dll
+0x00007fff54a10000 - 0x00007fff54a68000 	C:\WINDOWS\system32\mswsock.dll
+0x0000000050a30000 - 0x0000000050a49000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\net.dll
+0x0000000050a10000 - 0x0000000050a21000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\nio.dll
+0x00007fff54820000 - 0x00007fff548c3000 	C:\WINDOWS\SYSTEM32\DNSAPI.dll
+0x00007fff48dc0000 - 0x00007fff48dc9000 	C:\Windows\System32\rasadhlp.dll
+0x00007fff4f7a0000 - 0x00007fff4f808000 	C:\WINDOWS\System32\fwpuclnt.dll
+0x00007fff54a70000 - 0x00007fff54a8e000 	C:\WINDOWS\SYSTEM32\CRYPTSP.dll
+0x00007fff546b0000 - 0x00007fff546e5000 	C:\WINDOWS\system32\rsaenh.dll
+0x00007fff54ca0000 - 0x00007fff54cc6000 	C:\WINDOWS\SYSTEM32\bcrypt.dll
+0x00007fff54fc0000 - 0x00007fff55020000 	C:\WINDOWS\system32\bcryptprimitives.dll
+0x00007fff55020000 - 0x00007fff5502a000 	C:\WINDOWS\SYSTEM32\CRYPTBASE.dll
+0x00007fff43820000 - 0x00007fff43834000 	C:\WINDOWS\system32\napinsp.dll
+0x00007fff43800000 - 0x00007fff43819000 	C:\WINDOWS\system32\pnrpnsp.dll
+0x00007fff50240000 - 0x00007fff50259000 	C:\WINDOWS\system32\NLAapi.dll
+0x00007fff43790000 - 0x00007fff4379c000 	C:\WINDOWS\System32\winrnr.dll
+0x00007fff4fa10000 - 0x00007fff4fa39000 	C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+0x00007fff4f9e0000 - 0x00007fff4f9ea000 	C:\WINDOWS\SYSTEM32\WINNSI.DLL
+0x0000000050760000 - 0x00000000508f3000 	C:\Program Files\Java\jdk1.7.0_01\jre\bin\awt.dll
+0x00007fff55a20000 - 0x00007fff55ad7000 	C:\WINDOWS\system32\OLEAUT32.dll
+0x0000000069340000 - 0x00000000693c5000 	C:\Users\Riper\AppData\Local\Temp\sqlite-3.7.2-sqlitejdbc.dll
+
+VM Arguments:
+jvm_args: -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n -Dclojure.compile.path=C:\Users\Riper\workspace\stocker\target\classes -Dstocker.version=0.1.0-SNAPSHOT -Dfile.encoding=UTF-8 -Dclojure.debug=false 
+java_command: clojure.main -i C:\Users\Riper\AppData\Local\Temp\form-init9161477620110170449.clj
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\iis express\PHP\v5.4;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Autodesk\Backburner\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Users\Riper\AppData\Roaming\npm;C:\Program Files (x86)\nodejs\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Fi;C:\Program Files\MySQL\MySQL Server 5.1\bin;C:\Program Files (x86)\Google\Google Apps Sync\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Google\Google Apps Migration\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Users\Riper\.lein\bin
+USERNAME=Riper
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows NT 6.2 Build 9200 
+
+CPU:total 4 (4 cores per cpu, 1 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt
+
+Memory: 4k page, physical 8369000k(1933760k free), swap 16757608k(7881972k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (21.1-b02) for windows-amd64 JRE (1.7.0_01-b08), built on Oct  3 2011 01:39:25 by "java_re" with unknown MS VC++:1600
+
+time: Sat Sep 06 22:50:27 2014
+elapsed time: 730 seconds
+

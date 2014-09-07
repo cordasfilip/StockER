@@ -1,0 +1,29 @@
+﻿<script id="Wizard-NewPortfolio" type="text/html" data-title="Add Portfolio" data-icon="icon-bars" data-width="70%">
+       
+        <form style="padding:20px" data-bind="with: new NewPortfolioWizardViewModel($data)">
+          <h2>Portfolio</h2>
+            <label>Name</label>
+            <div class="input-control text" data-bind="css: { 'error-state': !Name.isValid() }">
+                <input style="width: 100%" data-bind="value: Name"/>
+                <button class="btn-clear"></button>
+            </div>
+            <label>Icon</label>
+            <div class="input-control select">
+               <input style="width:100%" 
+                   data-bind="
+                   kendoDropDownList:{
+                       data: Icons,
+                       value: SelectedIcon,
+                       valueTemplate:'<i style=\'font-size:20px;padding-right: 20px\' class=\'#=data#\'></i>#=data#',
+                       template: '<i style=\'font-size:20px;padding:20px 20px\' class=\'#=data#\'></i>#=data#'
+                   }"/>
+               
+            </div>
+
+            <div class="form-actions">
+                <button class="button primary" data-bind="click: Add, disable: !Name.isValid()">Add</button>
+                <button class="button" data-bind="click: Cancel">Cancel</button>
+            </div>
+        </form>
+</script>
+

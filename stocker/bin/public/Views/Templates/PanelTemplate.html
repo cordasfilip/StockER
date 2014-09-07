@@ -1,0 +1,31 @@
+﻿<script id="Panel" type="text/html">
+    <div class="panel">      
+        <div data-bind="attr:{class:'panel-header bd-lime bg-'+Background()+' fg-'+Foreground()}">
+            <span data-bind="attr:{class:'icon-'+Icon()+' fg-'+Foreground()}"></span>
+            <!-- ko text:Title -->
+            <!-- /ko -->
+            <!--<div class="toolbar transparent place-right">
+                <div class="button-dropdown">
+                    <button class="dropdown-toggle panel-button"><span class="icon-cog"></span></button>
+                    <ul class="dropdown-menu  place-right" data-bind="metroDropdown:{}">
+                        <li><a href="#">Item 1</a></li>
+                        <li><a href="#">Item 2</a></li>
+                        <li><a href="#">Item 3</a></li>
+                    </ul>
+
+                </div>
+            </div>-->
+
+        </div>
+
+        <div class="panel-content" style="padding: 2px;" data-bind="attr: { class: 'panel-height-' + Height }"> 
+            <div style="overflow: auto" data-bind="attr: { class: 'panel-height-' +Height }">
+                <!-- ko template:{name:Content,data:$data} -->
+                <!-- /ko -->
+                
+            </div>
+        </div>
+        <div style="background:black;" data-bind="Loading: Loading"></div>
+    </div>
+</script>
+

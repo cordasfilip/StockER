@@ -1,0 +1,27 @@
+﻿<script id="NavigationLeft-ActionLinq" type="text/html">
+    <a class="bg-active-lime bg-hover-lime  fg-hover-white" data-bind="attr: { href: Href }"><i data-bind="attr: {class:Icon}"></i>
+       <b data-bind="text: Text"></b>
+    </a>
+</script>
+
+<script id="NavigationLeft-SubMenu" type="text/html">
+    <a class="dropdown-toggle bg-hover-lime  fg-hover-white" href="#"><i data-bind="attr: { class: Icon }"></i><b data-bind="text: Text"></b></a>  
+    <ul data-bind="foreach: Items, metroDropdown: {}">
+       <li class="bg-active-lime bg-hover-lime fg-hover-white" data-bind="template: { name: 'NavigationLeft-' + Type, data: Value }"></li>                        
+    </ul>
+</script>
+
+<script id="Settings-CheckBox" type="text/html">
+    <li style="padding: 10px; cursor: pointer" data-bind="click: function () { IsChecked(!IsChecked()) }">
+         <i style="padding-right: 10px" data-bind="attr: { class: Icon }"></i>
+                <!-- ko text:Text -->
+                <!-- /ko -->          
+        <div style="float:right" class="input-control checkbox">                        
+            <label style="margin:0">
+                <input type="checkbox" data-bind="checked: IsChecked" />
+                <span class="check bg-"></span>
+            </label>
+        </div>
+
+    </li>   
+</script>

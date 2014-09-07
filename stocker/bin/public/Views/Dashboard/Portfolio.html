@@ -1,0 +1,127 @@
+﻿<script id="View-Dashboard-Portfolio" type="text/html">
+    
+    <!-- ko with:new PortfolioDashboardViewModel(Id) -->
+
+    <h2 data-bind="
+    text: Title,
+    PageTitle: Title,
+    AddCeateNavigation: [{ Text: 'ADDSTOCK', Icon: 'icon-stats', Action: ShowNewStockWindow }],
+    AddSettingButton: [{ Template: 'CheckBox', Text: 'Edit', Icon: 'icon-pencil', IsChecked:IsEdit }],
+    Dispose: Dispose">
+    </h2>
+    
+    <div data-bind="AnimateTada: IsEdit">
+        <!-- ko foreach:Stocks -->
+        <div class="tile double bg-white" data-bind="visible:$parent.IsEdit">
+            <div class="tile-content">
+                <div style="position: absolute; float: right; color: #2b4c66; font-size: 0.7em; right: 10px;" data-bind="click: $parent.RemoveStock">
+                    <i style="font-size: 3em; padding-top: 0.5em;" class="fg-lime icon-cancel"></i>
+                </div>
+
+                <div style="padding:0.5em;font-size:3.5em;font-weight:bold" data-bind="text: Id">
+                </div>
+            </div>
+        </div>
+        <!-- ko ifnot: $parent.IsEdit, -->
+        <div class="tile double" style="padding: 10px; background: white" data-bind=" TileExpande: {}">
+            <a href="#/">
+                <div style="line-height: 1.5em;">
+                    <div style="display: inline-block; font-size: 1.5em; color: #2b4c66; font-weight: bold;" data-bind="text: Id">
+                        
+                    </div>
+                    <div style="float: right; color: #2b4c66; font-size: 0.7em;"  data-bind="text: StockExchange">
+                        
+                    </div>
+                </div>
+                <div style="font-weight: bold; font-size: 0.9em;" data-bind="text: Name">
+                    
+                </div>
+                <div>
+                    <div style="display: inline-block; font-size: 1.5em; color: #2b4c66; font-weight: bold;">
+                        <i style="font-size: 3em; float: left" data-bind="attr: { class: Change > 0 ? 'fg-green icon-arrow-up-4' : 'fg-red icon-arrow-down-4' }"></i>
+                        <p style="padding: 0.6em; font-size: 1.5em;" class="fg-green" data-bind="text: Open, attr: { class: Change > 0 ? 'fg-green' : 'fg-red' }"></p>
+                    </div>
+                </div>
+                </a>
+
+            <div style="padding-left: 1px; height: 9em; width: 12em; float: left" data-bind="dxCircularGauge: {
+    value: ChangeInPercent,
+    size: { height: '9em', width: '12em' },
+    valueIndicator: {
+
+        color: '#a4c400',
+        spindleSize: 1,
+        spindleGapSize: 0,
+    },
+    geometry: { startAngle: 180, endAngle: 0 },
+    rangeContainer:
+    {
+        backgroundColor: 'firebrick',
+        ranges: [
+             { startValue: -3, endValue: 0, color: '#e51400' },
+             { startValue: 0, endValue: 3, color: '#60a917' }
+        ]
+    },
+    scale:
+    {
+        startValue: -3, endValue: 3,
+        majorTick:
+        {
+            visible: true,
+            color: 'black'
+        },
+        minorTick:
+        {
+            visible: true,
+            color: 'black'
+        },
+        label:
+        {
+            customizeText: function (arg)
+            {
+                return arg.valueText + ' %';
+            }
+        }
+    }
+}">
+            </div>
+            <div style="float: left; height: 8.5em; width: 3.9em;"
+                data-bind="
+                dxLinearGauge:
+                {
+                    geometry: { orientation: 'vertical' },
+                    scale:
+                    {
+                        startValue: $parent.Min, endValue: $parent.Max,
+                    },
+                    rangeContainer: {
+                        backgroundColor: 'none',
+                        ranges: [
+                            { startValue: $parent.Min, endValue: 0, color: '#e51400' },
+                            { startValue: 0, endValue: $parent.Max, color: '#60a917' }
+                        ]
+                    },
+                    subvalues: $parent.Avg,
+                    value: ChangeInPercent
+                }">
+            </div>
+             <div style="position: absolute; float: right; color: #2b4c66; font-size: 0.7em; bottom: 0px; right: 0px;padding:15px 10px" class="expande-button">
+                 <i style="font-size: 3em; padding-top: 0.5em;" class="fg-black icon-arrow-down-3"></i>
+             </div>           
+        </div>
+       <!-- /ko -->
+
+         <!-- /ko -->
+         <div class="tile double bg-white" data-bind="visible:IsEdit,click: ShowNewStockWindow">
+            <div class="tile-content icon">
+                <i class="icon-plus fg-lime"></i>
+            </div>
+        </div>
+    </div>
+
+   <!-- <div style="background:black;margin-top:150px" data-bind="Loading: Loading"></div>-->
+
+    <!-- /ko -->
+
+
+</script>
