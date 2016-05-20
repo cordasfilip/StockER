@@ -1,0 +1,268 @@
+﻿<script id="View-Dashboard-Portfolio" type="text/html">
+    
+    <!-- ko with:new PortfolioDashboardViewModel(Id) -->
+    <div>
+        <h2 style="display: inline-block" data-bind="
+    text: Title,
+    PageTitle: Title,
+    AddCeateNavigation: [{ Text: 'ADDSTOCK', Icon: 'icon-stats', Action: ShowNewStockWindow }],
+    AddSettingButton: [{ Template: 'CheckBox', Text: 'Edit', Icon: 'icon-pencil', IsChecked: IsEdit }],
+    Dispose: Dispose"></h2>
+        <div style="top: 10px; position: absolute; float: right; color: #2b4c66; font-size: 0.7em; right: 10px;" data-bind="visible: IsEdit, click: RemovePortfolio">
+            <i style="font-size: 3em;" class="fg-red icon-cancel"></i>
+        </div>
+    </div>
+
+
+    <div class="tab-control ">
+        <ul class="tabs">
+            <li data-bind="css: { active: $parent.Params().Tab == null || $parent.Params().Tab == 'Stocks' }"><a data-bind="    attr: { href: '#/Dashboard/Portfolio/' + $parent.Id + '?Tab=Stocks' }">Stocks</a></li>
+            <li data-bind="css: { active: $parent.Params().Tab == 'Analysis' }"><a data-bind="    attr: { href: '#/Dashboard/Portfolio/' + $parent.Id + '?Tab=Analysis' }">Analysis</a></li>
+            <li style="cursor: pointer;" data-hint="Calculate Factors|Click to calculate factors" data-hint-position="left" data-bind="click: CalculateFactors, metroHint: {}, if: $parent.Params().Tab == 'Analysis'" class="place-right"><a><i class="icon-font"></i></a></li>
+            <li style="cursor: pointer;" data-bind="click: GoToInfo, if: $parent.Params().Tab == 'Analysis'" class="place-right"><a><i class="icon-info"></i></a></li>
+        </ul>
+        
+        <div>
+            <div style="padding-top: 5px" data-bind="if: $parent.Params().Tab == null || $parent.Params().Tab == 'Stocks', AnimateTada: IsEdit">
+                <!-- ko  foreach:Stocks -->
+                <div class="tile double bg-white" data-bind="visible: $parent.IsEdit">
+                    <div class="tile-content">
+                        <div style="position: absolute; float: right; color: #2b4c66; font-size: 0.7em; right: 10px;" data-bind="click: $parent.RemoveStock">
+                            <i style="font-size: 3em; padding-top: 0.5em;" class="fg-red icon-cancel"></i>
+                        </div>
+
+                        <div style="padding: 0.5em; font-size: 3.5em; font-weight: bold" data-bind="text: Id">
+                        </div>
+                    </div>
+                </div>
+                <!-- ko ifnot: $parent.IsEdit, -->
+                <div class="tile double" style="padding: 10px; background: white" data-bind=" TileExpande: {}">
+                    <a data-bind="attr: {href:'#/Dashboard/Stock/'+Id}">
+                        <div style="line-height: 1.5em;">
+                            <div style="display: inline-block; font-size: 1.5em; color: #2b4c66; font-weight: bold;" data-bind="text: Id">
+                            </div>
+                            <div style="float: right; color: #2b4c66; font-size: 0.7em;" data-bind="text: StockExchange">
+                            </div>
+                        </div>
+                        <div style="font-weight: bold; font-size: 0.9em;" data-bind="text: Name">
+                        </div>
+                        <div>
+                            <div style="display: inline-block; font-size: 1.5em; color: #2b4c66; font-weight: bold;">
+                                <i style="font-size: 3em; float: left" data-bind="attr: { class: Change > 0 ? 'fg-green icon-arrow-up-4' : 'fg-red icon-arrow-down-4' }"></i>
+                                <p style="padding: 0.6em; font-size: 1.5em;" class="fg-green" data-bind="text: Open, attr: { class: Change > 0 ? 'fg-green' : 'fg-red' }"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div style="padding-left: 1px; height: 9em; width: 12em; float: left" data-bind="dxCircularGauge: {
+    value: ChangeInPercent,
+    size: { height: '9em', width: '12em' },
+    valueIndicator: {
+
+        color: '#a4c400',
+        spindleSize: 1,
+        spindleGapSize: 0,
+    },
+    geometry: { startAngle: 180, endAngle: 0 },
+    rangeContainer:
+    {
+        backgroundColor: 'firebrick',
+        ranges: [
+             { startValue: -3, endValue: 0, color: '#e51400' },
+             { startValue: 0, endValue: 3, color: '#60a917' }
+        ]
+    },
+    scale:
+    {
+        startValue: -3, endValue: 3,
+        majorTick:
+        {
+            visible: true,
+            color: 'black'
+        },
+        minorTick:
+        {
+            visible: true,
+            color: 'black'
+        },
+        label:
+        {
+            customizeText: function (arg)
+            {
+                return arg.valueText + ' %';
+            }
+        }
+    }
+}">
+                    </div>
+                    <div style="float: left; height: 8.5em; width: 3.9em;"
+                        data-bind="
+    dxLinearGauge:
+    {
+        geometry: { orientation: 'vertical' },
+        scale:
+        {
+            startValue: $parent.Min, endValue: $parent.Max,
+        },
+        rangeContainer: {
+            backgroundColor: 'none',
+            ranges: [
+                { startValue: $parent.Min, endValue: 0, color: '#e51400' },
+                { startValue: 0, endValue: $parent.Max, color: '#60a917' }
+            ]
+        },
+        subvalues: $parent.Avg,
+        value: ChangeInPercent
+    }">
+                    </div>
+                    <div style="position: absolute; float: right; color: #2b4c66; font-size: 0.7em; bottom: 0px; right: 0px; padding: 15px 10px" class="expande-button">
+                        <i style="font-size: 3em; padding-top: 0.5em;" class="fg-black icon-arrow-down-3"></i>
+                    </div>
+                </div>
+                <!-- /ko -->
+
+                <!-- /ko -->
+                <div class="tile double bg-white" data-bind="visible: IsEdit, click: ShowNewStockWindow">
+                    <div class="tile-content icon">
+                        <i class="icon-plus fg-lime"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding-top: 5px" data-bind="if: $parent.Params().Tab == 'Analysis'">
+                <!-- ko with:FactorsVM -->
+                <h1 data-bind="visible: NoFactors">No factors found for portfolio!
+                    Calculate factors first by clicking</h1>
+                <div data-bind="visible: !NoFactors()">
+
+                    <div style="text-align: left">
+                        <i data-bind="click: Prev, visible: HasNext" style="font-size: 30px; display: inline-block; cursor: pointer;" class="icon-arrow-left-3 fg-lime"></i>
+                        <h2 data-bind="text: SelectedFactor" style="display: inline-block; margin-left: 30px; margin-right: 30px"></h2>
+                        <i data-bind="click: Next, visible: HasPrev" style="font-size: 30px; display: inline-block; cursor: pointer" class="icon-arrow-right-3 fg-lime"></i>
+                    </div>
+
+
+                    <div style="margin: 25px 25px 10px 5px" class="stepper">
+                        <ul style="margin: 0" data-bind="foreach: AllFactors">
+                            <li data-bind="click: function () { $parent.SelectIndex($index()); }, css: { complete: $data == $parent.SelectedFactor() }, style: { left: (($index() * 100) / ($parent.AllFactors().length - 1)) + '%' }"></li>
+
+                        </ul>
+                    </div>
+
+                    <div style="padding-top: 15px" class="row">
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-header bd-lime bg-white">
+                                    Stocks
+                                   <div class="toolbar transparent place-right">
+                                       <button data-bind="click: function () { RowFilterActive(!RowFilterActive()) }" class="icon-filter fg-lime"></button>
+                                       <div data-bind="visible: RowFilterActive" style="position: absolute; float: right; margin: 0; top: -5px; right: 70px; padding: 3px" class="balloon left">
+                                           Top:<input data-bind="kendoNumericTextBox: { value: RowsTop, max: MaxRows,min:1, decimals: 0 }" />
+                                       </div>
+                                   </div>
+
+                                </div>
+                                <div class="panel-content bg-white ">
+
+                                    <table style="margin-bottom: 0" class="table bordered">
+                                        <thead>
+                                            <tr>
+                                                <td style="border-bottom-color: #a4c400">Name</td>
+                                                <td style="border-bottom-color: #a4c400" data-bind="text: SelectedFactor"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="striped" data-bind="foreach: SelectedFactorRows">
+                                            <tr>
+                                                <td data-bind="text: Name"></td>
+                                                <td style="text-align: right" data-bind="text: Value.toFixed(2) + ' ' + $parent.SelectedFactor()  "></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-header bd-lime bg-white">
+                                    Dates
+                                   <div class="toolbar transparent place-right">
+                                       <button data-bind="click: function () { ColumnsFilterActive(!ColumnsFilterActive()) }" class="icon-filter fg-lime"></button>
+                                       <div data-bind="visible: ColumnsFilterActive" style="position: absolute; float: right; margin: 0; top: -5px; right: 70px; padding: 3px" class="balloon left">
+                                           Top:<input data-bind="kendoNumericTextBox: { value: ColumnsTop, max: MaxColumns, min: 1, decimals: 0 }" />
+                                       </div>
+                                   </div>
+
+                                </div>
+                                <div class="panel-content bg-white ">
+
+                                    <table style="margin-bottom: 0" class="table bordered">
+                                        <thead>
+                                            <tr>
+                                                <td style="border-bottom-color: #a4c400">Name</td>
+                                                <td style="border-bottom-color: #a4c400"  data-bind="text: SelectedFactor"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="striped" data-bind="foreach: SelectedFactorColumns">
+                                            <tr>
+                                                <td data-bind="text: Name"></td>
+                                                <td style="text-align: right" data-bind="text: Value.toFixed(2)+' '+$parent.SelectedFactor() "></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>
+
+                    <div style="padding-top: 15px" class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-header bd-lime bg-white">
+                                    Factor By Stock
+                                   <div class="toolbar transparent place-right">
+                                       <button data-bind="click: ShowRowFactorFilter" class="icon-filter fg-lime"></button>
+                                       
+                                   </div>
+
+                                </div>
+                                <div class="panel-content bg-white ">
+                                    <div style="height:350px" data-bind="dxChart: FactorByStockSettings">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div style="padding-top: 15px" class="row">
+                        <div class="col-md-12">
+                            <div class="panel">
+                                <div class="panel-header bd-lime bg-white">
+                                    Factor By Date
+                                   <div class="toolbar transparent place-right">
+                                       <button data-bind="click: ShowColumnFactorFilter" class="icon-filter fg-lime"></button>
+                                       
+                                   </div>
+
+                                </div>
+                                <div class="panel-content bg-white ">
+                                    <div style="height:350px" data-bind="dxChart: FactorByDateSettings">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+   <div style="position:fixed;background:black;left:50%;top:50%" data-bind="Loading: Loading"></div>
+
+    <!-- /ko -->
+
+
+</script>

@@ -1,0 +1,9 @@
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\bin\Debug\Utils.dll
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\bin\Debug\Utils.pdb
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\bin\Debug\Core.dll
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\bin\Debug\MathNet.Numerics.dll
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\bin\Debug\Core.pdb
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\bin\Debug\MathNet.Numerics.xml
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\obj\Debug\Utils.csprojResolveAssemblyReference.cache
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\obj\Debug\Utils.dll
+C:\Users\Riper\Documents\Visual Studio 2012\Projects\StockER+\Utils\obj\Debug\Utils.pdb

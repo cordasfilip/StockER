@@ -1,0 +1,12 @@
+﻿<script id="WorldMapWidget" type="text/html">
+    
+    <!-- ko with:new WorldMapWidgetViewModel($data)-->          
+                <div style="position: relative; height: 100%" class="world-image" data-bind="foreach: WorldMarkets">
+                    <div data-bind="style: Location.Style, attr: { class: 'map-item bg-white balloon ' + Location.Arrow }, click: function () { location = '#/Dashboard/Stock/'+Id }">
+                        <div class="map-item-title fg-darkGreen " data-bind="text: Name"></div>
+                        <div><i data-bind="attr: { class: Change > 0 ? 'fg-green icon-arrow-up-4' : 'fg-red icon-arrow-down-4' }"></i><b data-bind="    text: Open.toLocaleString()"></b></div>
+                    </div>
+                </div>              
+     <!-- /ko -->
+   
+</script>
