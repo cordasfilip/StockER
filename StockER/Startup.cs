@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using StockER.App_Start;
 
 [assembly: OwinStartup(typeof(SignalRChat.Startup))]
 namespace SignalRChat
@@ -10,6 +11,7 @@ namespace SignalRChat
         {
             // Any connection or hub wire up and configuration should go here
             app.MapSignalR();
+            app.UseDatabase();
         }
     }
 }
